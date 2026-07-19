@@ -1,6 +1,12 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="customers")
 public class Customer {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private String customer_Id;
     private String firstName;
     private String lastName;

@@ -1,8 +1,16 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.*;
+
+
+@Entity
+@Table(name="users")
 public class User {
+    @Id
     private String user_Id;
+    @Column(nullable = false, unique = true)
     private String email;
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public User(){
