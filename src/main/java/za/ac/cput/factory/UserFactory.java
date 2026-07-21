@@ -9,6 +9,9 @@ public class UserFactory {
         if(Helper.isNullOrEmpty(user_id) || Helper.isNullOrEmpty(email)){
             throw new IllegalArgumentException("user_id or email is null or empty");
         }
+        if(!Helper.isValidEmail(email)){
+            throw new IllegalArgumentException("email is null or invalid");
+        }
         return new User.Builder()
                 .setuser_Id(user_id)
                 .setemail(email)

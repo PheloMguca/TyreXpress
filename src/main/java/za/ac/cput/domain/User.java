@@ -12,6 +12,8 @@ public class User {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne(mappedBy = "user")
+    private Customer customer;
 
     public User(){
     }
@@ -33,11 +35,15 @@ public class User {
         return user_Id;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
-                "email='" + email + '\'' +
-                ", user_Id='" + user_Id + '\'' +
+        return "Builder{" +
+                "user_Id='" + user_Id + '\'' +
+                ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
     }
@@ -59,6 +65,7 @@ public class User {
             this.role = role;
             return this;
         }
+
         public Builder copy(User user) {
             this.user_Id = user.user_Id;
             this.email = user.email;
@@ -68,5 +75,6 @@ public class User {
         public User build() {
             return  new User(this);
         }
+
     }
 }

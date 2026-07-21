@@ -3,16 +3,19 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="customers")
+@Table(name = "customers")
 public class Customer {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private String customer_Id;
     private String firstName;
     private String lastName;
     private String email;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
     private Address address;
-    private String user_Id;
 
     public Customer() {
     }
@@ -21,7 +24,7 @@ public class Customer {
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.email = builder.email;
-        this.user_Id = builder.user_Id;
+        this.user = builder.user;
         this.address = builder.address;
     }
 
@@ -41,8 +44,8 @@ public class Customer {
         return lastName;
     }
 
-    public String getUser_Id() {
-        return user_Id;
+    public User getUser() {
+        return user;
     }
 
     public Address getAddress() {
@@ -52,12 +55,10 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                 ", customer_Id='" + customer_Id + '\'' +
+                "customer_Id='" + customer_Id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", user_Id='" + user_Id + '\'' +
-                ", address=" + address +
                 '}';
     }
 
@@ -66,7 +67,7 @@ public class Customer {
         private String firstName;
         private String lastName;
         private String email;
-        private String user_Id;
+        private User user;
         private Address address;
 
         public Builder setcustomer_Id(String customer_Id) {
@@ -85,8 +86,8 @@ public class Customer {
             this.email = email;
             return this;
         }
-        public Builder setuser_Id(String user_Id) {
-            this.user_Id = user_Id;
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
         public Builder setaddress(Address address) {
@@ -98,7 +99,7 @@ public class Customer {
             this.firstName = customer.getFirstName();
             this.lastName = customer.getLastName();
             this.email = customer.getEmail();
-            this.user_Id = customer.getUser_Id();
+            this.user = customer.getUser();
             this.address = customer.getAddress();
             return this;
         }
