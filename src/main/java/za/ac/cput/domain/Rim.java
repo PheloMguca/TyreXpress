@@ -1,5 +1,9 @@
 package za.ac.cput.domain;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "rim")
 public class Rim extends Product {
 
     private double diameter;
