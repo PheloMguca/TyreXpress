@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderLineService implements IOrderLineService{
+
     private static OrderLineService service = null;
     private IOrderLineRepository repository;
 
@@ -17,7 +18,7 @@ public class OrderLineService implements IOrderLineService{
     }
 
 
-    public static IOrderLineService getService() {
+    public static OrderLineService getService() {
         if (service == null) {
             service = new OrderLineService();
         }
