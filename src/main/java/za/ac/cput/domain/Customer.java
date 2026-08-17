@@ -6,30 +6,33 @@ import jakarta.persistence.*;
 @Table(name = "customers")
 public class Customer {
     @Id
-    private String customer_Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long customerId;
     private String firstName;
     private String lastName;
+    private String phone;
     private String email;
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
     public Customer() {
     }
     public Customer(Builder builder) {
-        this.customer_Id = builder.customer_Id;
+        this.customerId = builder.customerId;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
+        this.phone = builder.phone;
         this.email = builder.email;
         this.user = builder.user;
         this.address = builder.address;
     }
 
-    public String getCustomer_Id() {
-        return customer_Id;
+    public Long getCustomerId() {
+        return customerId;
     }
 
     public String getEmail() {
@@ -52,26 +55,34 @@ public class Customer {
         return address;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
-                "customer_Id='" + customer_Id + '\'' +
+                "customerId=" + customerId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", user=" + user +
+                ", address=" + address +
                 '}';
     }
 
     public static class  Builder {
-        private String customer_Id;
+        private Long customerId;
         private String firstName;
         private String lastName;
+        private String phone;
         private String email;
         private User user;
         private Address address;
 
-        public Builder setcustomer_Id(String customer_Id) {
-            this.customer_Id = customer_Id;
+        public Builder setcustomerId(Long customerId) {
+            this.customerId = customerId;
             return this;
         }
         public Builder setfirstName(String firstName) {
@@ -86,6 +97,7 @@ public class Customer {
             this.email = email;
             return this;
         }
+
         public Builder setUser(User user) {
             this.user = user;
             return this;
@@ -94,17 +106,23 @@ public class Customer {
             this.address = address;
             return this;
         }
+
+        public Builder setPhone(String phone) {
+            this.phone = phone;
+            return this;
+        }
+
         public Builder copy(Customer customer) {
-            this.customer_Id = customer.getCustomer_Id();
+            this.customerId = customer.getCustomerId();
             this.firstName = customer.getFirstName();
             this.lastName = customer.getLastName();
+            this.phone = customer.getPhone();
             this.email = customer.getEmail();
             this.user = customer.getUser();
             this.address = customer.getAddress();
             return this;
         }
         public Customer build() {
-
             return new Customer(this);
         }
 

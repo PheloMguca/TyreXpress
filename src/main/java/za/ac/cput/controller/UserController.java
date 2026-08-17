@@ -1,39 +1,40 @@
 package za.ac.cput.controller;
 
-import za.ac.cput.domain.*;
-import za.ac.cput.service.*;
-import java.util.*;
+import org.springframework.web.bind.annotation.*;
+import za.ac.cput.domain.User;
+import za.ac.cput.service.UserService;
+import java.util.List;
 
+@RestController
+@RequestMapping("/users")
 public class UserController {
-    private static UserController controller = null;
-    private IUserService service;
+    private UserService service;
 
-    private UserController() {
-        service = UserService.getService();
-    }
-    public static UserController getController() {
-        if (controller == null) {
-            controller = new UserController();
-        }
-        return controller;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
-    public User create(User user) {
+    @PostMapping
+    public User create(@RequestBody User user) {
         return service.create(user);
     }
 
-    public User read(String userId) {
+    @GetMapping("/read/{userId}")
+    public User read(@PathVariable Long userId) {
         return service.read(userId);
     }
 
-    public User update(User user) {
+    @PutMapping("/update")
+    public User update(@RequestBody User user) {
         return service.update(user);
     }
 
-    public boolean delete(String userId) {
+    @DeleteMapping("/delete/{userId}")
+    public boolean delete(@PathVariable Long userId) {
         return service.delete(userId);
     }
 
+    @GetMapping("/getAll")
     public List<User> getAll() {
         return service.getAll();
     }

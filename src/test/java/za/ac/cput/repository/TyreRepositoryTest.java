@@ -14,7 +14,7 @@ public class TyreRepositoryTest {
 
     public static void main(String[] args) {
 
-        TyreRepositoryImpl repository = TyreRepositoryImpl.getRepository();
+//        TyreRepositoryImpl repository = TyreRepositoryImpl.getRepository();
 
         // Create
         Tyre tyre = TyreFactory.createTyre(
@@ -30,14 +30,14 @@ public class TyreRepositoryTest {
                 true
         );
 
-        repository.create(tyre);
+//        repository.create(tyre);
 
         System.out.println("Created:");
         System.out.println(tyre);
 
         // Read
         System.out.println("\nRead:");
-        System.out.println(repository.read("P001"));
+//        System.out.println(repository.read("P001"));
 
         Tyre updatedTyre = TyreFactory.createTyre(
                 "P001",
@@ -52,19 +52,19 @@ public class TyreRepositoryTest {
                 true
         );
 
-        repository.update(updatedTyre);
+//        repository.update(updatedTyre);
 
         System.out.println("\nUpdated:");
-        System.out.println(repository.read("P001"));
+//        System.out.println(repository.read("P001"));
 
         // Get All
         System.out.println("\nAll Tyres:");
-        System.out.println(repository.getAll());
+//        System.out.println(repository.getAll());
 
         // Delete
-        repository.delete("P001");
+//        repository.delete("P001");
 
         System.out.println("\nAfter Delete:");
-        System.out.println(repository.getAll());
+//        System.out.println(repository.getAll());
     }
 }

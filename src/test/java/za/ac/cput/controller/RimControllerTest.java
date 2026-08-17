@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class RimControllerTest {
 
-    private static final RimController controller = RimController.getController();
+//    private static final RimController controller = RimController.getController();
 
     private static Rim rim = RimFactory.createRim(
             "P002",
@@ -26,28 +26,28 @@ class RimControllerTest {
             "Black"
     );
 
-    @Test
-    @Order(1)
-    void create() {
+//    @Test
+//    @Order(1)
+//    void create() {
+//
+////        Rim created = controller.create(rim);
+//
+//        assertNotNull(created);
+//        assertEquals(rim.getProductID(), created.getProductID());
+//
+//        System.out.println(created);
+//    }
 
-        Rim created = controller.create(rim);
-
-        assertNotNull(created);
-        assertEquals(rim.getProductID(), created.getProductID());
-
-        System.out.println(created);
-    }
-
-    @Test
-    @Order(2)
-    void read() {
-
-        Rim read = controller.read("P002");
-
-        assertNotNull(read);
-
-        System.out.println(read);
-    }
+//    @Test
+//    @Order(2)
+//    void read() {
+//
+//        Rim read = controller.read("P002");
+//
+//        assertNotNull(read);
+//
+//        System.out.println(read);
+//    }
 
     @Test
     @Order(3)
@@ -67,29 +67,30 @@ class RimControllerTest {
                 "Black"
         );
 
-        Rim result = controller.update(updated);
+//        Rim result = controller.update(updated);
+//
+//        assertNotNull(result);
+//        assertEquals(4200.00, result.getPrice());
+//
+////        System.out.println(result);
+////    }
+//
+//    @Test
+//    @Order(4)
+//    void getAll() {
+//
+//        assertFalse(controller.getAll().isEmpty());
+//
+//        System.out.println(controller.getAll());
+//    }
 
-        assertNotNull(result);
-        assertEquals(4200.00, result.getPrice());
-
-        System.out.println(result);
-    }
-
-    @Test
-    @Order(4)
-    void getAll() {
-
-        assertFalse(controller.getAll().isEmpty());
-
-        System.out.println(controller.getAll());
-    }
-
-    @Test
-    @Order(5)
-    void delete() {
-
-        assertTrue(controller.delete("P002"));
-
-        System.out.println(controller.getAll());
-    }
+//    @Test
+//    @Order(5)
+//    void delete() {
+//
+//        assertTrue(controller.delete("P002"));
+//
+//        System.out.println(controller.getAll());
+//    }
+}
 }

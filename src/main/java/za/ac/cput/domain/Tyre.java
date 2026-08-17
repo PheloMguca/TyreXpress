@@ -2,7 +2,7 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 
-@Entity
+
 @Table(name = "tyre")
 public class Tyre extends Product {
 

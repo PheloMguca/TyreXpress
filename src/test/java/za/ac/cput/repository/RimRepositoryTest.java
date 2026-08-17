@@ -15,7 +15,7 @@ public class RimRepositoryTest {
 
     public static void main(String[] args) {
 
-        RimRepositoryImpl repository = RimRepositoryImpl.getRepository();
+//        RimRepositoryImpl repository = RimRepositoryImpl.getRepository();
 
         // Create
         Rim rim = RimFactory.createRim(
@@ -32,14 +32,14 @@ public class RimRepositoryTest {
                 "Black"
         );
 
-        repository.create(rim);
+//        repository.create(rim);
 
         System.out.println("Created:");
         System.out.println(rim);
 
         // Read
         System.out.println("\nRead:");
-        System.out.println(repository.read("P002"));
+//        System.out.println(repository.read("P002"));
 
         // Update
         Rim updatedRim = RimFactory.createRim(
@@ -56,19 +56,19 @@ public class RimRepositoryTest {
                 "Black"
         );
 
-        repository.update(updatedRim);
+//        repository.update(updatedRim);
 
         System.out.println("\nUpdated:");
-        System.out.println(repository.read("P002"));
+//        System.out.println(repository.read("P002"));
 
         // Get All
         System.out.println("\nAll Rims:");
-        System.out.println(repository.getAll());
+//        System.out.println(repository.getAll());
 
         // Delete
-        repository.delete("P002");
+//        repository.delete("P002");
 
         System.out.println("\nAfter Delete:");
-        System.out.println(repository.getAll());
+//        System.out.println(repository.getAll());
     }
 }

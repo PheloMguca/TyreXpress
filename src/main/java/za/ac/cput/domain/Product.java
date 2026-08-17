@@ -2,7 +2,7 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 
-@Entity
+
 @Table(name = "product")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Product {

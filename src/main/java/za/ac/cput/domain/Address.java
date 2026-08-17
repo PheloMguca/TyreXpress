@@ -1,23 +1,26 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name="addresses")
 public class Address {
     @Id
-    private String address_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long addressId;
     private String street;
     private String city;
     private String province;
     private String postalCode;
     @OneToOne(mappedBy = "address")
+    @JsonIgnore
     private Customer customer;
 
     public Address() {
     }
     public Address(Builder builder) {
-        this.address_id = builder.address_id;
+        this.addressId = builder.addressId;
         this.street = builder.street;
         this.city = builder.city;
         this.province = builder.province;
@@ -25,8 +28,8 @@ public class Address {
         this.customer = builder.customer;
     }
 
-    public String getAddress_id() {
-        return address_id;
+    public Long getAddressId() {
+        return addressId;
     }
 
     public String getCity() {
@@ -52,7 +55,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "address_id='" + address_id + '\'' +
+                "address_id='" + addressId + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 ", province='" + province + '\'' +
@@ -61,15 +64,15 @@ public class Address {
     }
 
     public static  class Builder{
-        private String address_id;
+        private Long addressId;
         private String street;
         private String city;
         private String province;
         private String postalCode;
         private Customer customer;
 
-        public Builder setaddress_id(String address_id) {
-            this.address_id = address_id;
+        public Builder setaddress_id(Long addressId) {
+            this.addressId = addressId;
             return this;
         }
         public Builder setstreet(String street) {
@@ -95,7 +98,7 @@ public class Address {
 
 
         public Builder copy(Address address){
-            this.address_id = address.address_id;
+            this.addressId = address.addressId;
             this.street = address.street;
             this.city = address.city;
             this.province = address.province;
