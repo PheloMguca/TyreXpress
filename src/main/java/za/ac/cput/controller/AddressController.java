@@ -1,40 +1,42 @@
 package za.ac.cput.controller;
 
+import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.*;
 import za.ac.cput.service.*;
 import java.util.*;
 
+@RestController
+@RequestMapping("/addresses")
 public class AddressController {
-    private static AddressController controller = null;
-    private IAddressService service;
+    private AddressService service;
 
-    private AddressController() {
-        service = AddressService.getService();
-    }
-    public static AddressController getController() {
-        if (controller == null) {
-            controller = new AddressController();
-        }
-        return controller;
+    public AddressController(AddressService service) {
+        this.service = service;
     }
 
-    public Address create(Address address) {
-        return service.create(address);
+    @PostMapping
+    public Address create(@RequestBody Address customer) {
+        return service.create(customer);
     }
 
-    public Address read(String addressId) {
-        return service.read(addressId);
+    @GetMapping("/read/{id}")
+    public Address read(@PathVariable Long id) {
+        return service.read(id);
     }
 
-    public Address update(Address address) {
+    @PutMapping("/update")
+    public Address update(@RequestBody Address address) {
         return service.update(address);
     }
 
-    public boolean delete(String userId) {
-        return service.delete(userId);
+    @DeleteMapping("/delete/{id}")
+    public boolean delete(@PathVariable Long id) {
+        return service.delete(id);
     }
 
+    @GetMapping("/getAll")
     public List<Address> getAll() {
         return service.getAll();
     }
+
 }

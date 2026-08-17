@@ -1,39 +1,40 @@
 package za.ac.cput.controller;
 
-import za.ac.cput.domain.*;
+import org.springframework.web.bind.annotation.*;
+import za.ac.cput.domain.Customer;
 import za.ac.cput.service.*;
 import java.util.*;
 
+@RestController
+@RequestMapping("/customers")
 public class CustomerController {
-    private static CustomerController controller = null;
-    private ICustomerService service;
+    private CustomerService service;
 
-    private CustomerController() {
-        service = CustomerService.getService();
-    }
-    public static CustomerController getController() {
-        if (controller == null) {
-            controller = new CustomerController();
-        }
-        return controller;
+    public CustomerController(CustomerService service) {
+        this.service = service;
     }
 
-    public Customer create(Customer customer) {
+    @PostMapping
+    public Customer create(@RequestBody Customer customer) {
         return service.create(customer);
     }
 
-    public Customer read(String customerId) {
+    @GetMapping("/read/{customerId}")
+    public Customer read(@PathVariable Long customerId) {
         return service.read(customerId);
     }
 
-    public Customer update(Customer customer) {
+    @PutMapping("/update")
+    public Customer update(@RequestBody Customer customer) {
         return service.update(customer);
     }
 
-    public boolean delete(String customerId) {
-        return service.delete(customerId);
+    @DeleteMapping("/delete/{customerId}")
+    public void delete(@PathVariable Long customerId) {
+        service.delete(customerId);
     }
 
+    @GetMapping("/getAll")
     public List<Customer> getAll() {
         return service.getAll();
     }
