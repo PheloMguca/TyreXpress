@@ -2,7 +2,6 @@ package za.ac.cput.controller;
 
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Tyre;
-import za.ac.cput.service.ITyreService;
 import za.ac.cput.service.TyreServiceImpl;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 @RequestMapping("/tyres")
 public class TyreController {
 
-    private final ITyreService service = TyreServiceImpl.getService();
+    private final TyreServiceImpl service = TyreServiceImpl.getService();
 
     @PostMapping("/create")
     public Tyre create(@RequestBody Tyre tyre) {

@@ -2,7 +2,6 @@ package za.ac.cput.controller;
 
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Rim;
-import za.ac.cput.service.IRimService;
 import za.ac.cput.service.RimServiceImpl;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
 @RequestMapping("/rims")
 public class RimController {
 
-    private final IRimService service = RimServiceImpl.getService();
+    private final RimServiceImpl service = RimServiceImpl.getService();
 
     @PostMapping("/create")
     public Rim create(@RequestBody Rim rim) {
