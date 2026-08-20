@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderRepositoryTest {
-    private OrderRepository repository;
+    private IOrderRepository repository;
     @BeforeEach
     void Setup() { repository = OrderRepository.getRepository();
     }
