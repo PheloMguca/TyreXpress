@@ -7,7 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
@@ -15,11 +14,11 @@ public class Order {
     private LocalDate date;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
-    private String customerId;
-    private String addressId;
-    private String paymentId;
+    private Long customerId;
+    private Long addressId;
+    private Long paymentId;
     // Composition → Order contains many OrderLines
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderLine> orderLines;
 
     public Order() {
@@ -52,15 +51,15 @@ public class Order {
         return status;
     }
 
-    public String getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public String getAddressId() {
+    public Long getAddressId() {
         return addressId;
     }
 
-    public String getPaymentId() {
+    public Long getPaymentId() {
         return paymentId;
     }
 
@@ -87,9 +86,9 @@ public class Order {
         private double totalAmount;
         private LocalDate date;
         private OrderStatus status;
-        private String customerId;
-        private String addressId;
-        private String paymentId;
+        private Long customerId;
+        private Long addressId;
+        private Long paymentId;
 
         public Builder setOrderId(Long orderId) {
             this.orderId = orderId;
@@ -111,17 +110,17 @@ public class Order {
             return this;
         }
 
-        public Builder setCustomerId(String customerId) {
+        public Builder setCustomerId(Long customerId) {
             this.customerId = customerId;
             return this;
         }
 
-        public Builder setAddressId(String addressId) {
+        public Builder setAddressId(Long addressId) {
             this.addressId = addressId;
             return this;
         }
 
-        public Builder setPaymentId(String paymentId) {
+        public Builder setPaymentId(Long paymentId) {
             this.paymentId = paymentId;
             return this;
         }
