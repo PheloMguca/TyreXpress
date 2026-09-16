@@ -12,7 +12,7 @@ public class OrderLine {
     private int quantity;
     private double unitPrice;
     private double lineTotal;
-    private String productId;
+    private Long productID;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -26,7 +26,7 @@ public class OrderLine {
         this.quantity = builder.quantity;
         this.unitPrice = builder.unitPrice;
         this.lineTotal = builder.lineTotal;
-        this.productId = builder.productId;
+        this.productID = builder.productID;
     }
 
     public Long getOrderLineId() {
@@ -45,18 +45,18 @@ public class OrderLine {
         return lineTotal;
     }
 
-    public String getProductID() {
-        return productId;
+    public Long getProductID() {
+        return productID;
     }
 
     @Override
     public String toString() {
         return "OrderLine{" +
-                "orderLineID='" + orderLineId + '\'' +
+                "orderLineId='" + orderLineId + '\'' +
                 ", quantity=" + quantity +
                 ", unitPrice=" + unitPrice +
                 ", lineTotal=" + lineTotal +
-                ", productID='" + productId + '\'' +
+                ", productId='" + productID + '\'' +
                 '}';
     }
     public static class Builder{
@@ -64,9 +64,9 @@ public class OrderLine {
         private int quantity;
         private double unitPrice;
         private double lineTotal;
-        private String productId;
+        private Long productID;
 
-        public Builder setOrderLineId(Long orderLineID) {
+        public Builder setOrderLineId(Long orderLineId) {
             this.orderLineId = orderLineId;
             return this;
         }
@@ -86,8 +86,8 @@ public class OrderLine {
             return this;
         }
 
-        public Builder setProductId(String productId) {
-            this.productId = productId;
+        public Builder setProductID(Long productID) {
+            this.productID = productID;
             return this;
         }
         public Builder copy(OrderLine orderLine){
@@ -95,7 +95,7 @@ public class OrderLine {
             this.quantity = orderLine.quantity;
             this.unitPrice = orderLine.unitPrice;
             this.lineTotal = orderLine.lineTotal;
-            this.productId = orderLine.productId;
+            this.productID = orderLine.productID;
             return this;
         }
         public OrderLine build(){

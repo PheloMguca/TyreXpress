@@ -31,7 +31,8 @@ public class OrderService implements IOrderService{
 
     @Override
     public boolean delete(Long orderId) {
-        return repository.existsById(orderId);
+        this.repository.deleteById(orderId);
+        return true;
     }
 
     @Override
